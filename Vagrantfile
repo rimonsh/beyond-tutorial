@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "fedora/34-cloud-base"
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+  config.vm.network("forwarded_port", guest: 8000, host: 8000, host_ip: "127.0.0.1")
+
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -57,14 +59,18 @@ Vagrant.configure("2") do |config|
   #   # Customize the amount of memory on the VM:
     vb.memory = "1024"
    end
+  config.vm.provision "shell", path: "setup.sh", privileged: false
+  config.vm.network("forwarded_port", guest: 8000, host: 8000, host_ip: "127.0.0.1")
   #
   # View the documentation for the provider you are using for more
   # information on available options.
+
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
   # config.vm.provision "shell", inline: <<-SHELL
+
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
