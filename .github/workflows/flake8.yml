@@ -4,7 +4,8 @@ jobs:
   flake8:
   name: Check code with Flake8
   runs-on: ubuntu-20.04
-  container: fedora:34\steps:
+  container: fedora:34\
+  steps:
   - name: Install Pipenv and Git
   run: dnf install -y pipenv git
   - name: Checkout code
